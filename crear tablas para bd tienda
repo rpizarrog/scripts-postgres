@@ -13,7 +13,7 @@ CREATE TABLE estados
 create table municipios
 (
     municipio integer not null primary key,
-    nombre varchar(50) not null,
+    nombre varchar(90) not null,
     estado integer, -- Es llave foránea
     constraint fkestados foreign key (estado) references estados (estado)
 );
@@ -21,7 +21,7 @@ create table municipios
 create table tiendas
 (
     tienda integer primary key not null,
-    nombre varchar(50) not null,
+    nombre varchar(90) not null,
     municipio integer, -- Es llave foránea
     constraint fkmunicipios foreign key (municipio) references municipios (municipio)
 );
