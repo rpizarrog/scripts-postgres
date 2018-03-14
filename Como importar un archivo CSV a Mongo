@@ -1,0 +1,30 @@
+PASO 1: Crear el archivo CSV, para este ejemplo es un archuvo que proviene de postrges con el siguiente script: 
+
+
+copy (select estados.estado, estados.nombre as nomestado, 
+		municipios.municipio, municipios.nombre as nommunicipio,
+		tiendas.tienda, tiendas.nombre as nomtienda
+from estados, municipios, tiendas
+where estados.estado = municipios.estado
+and municipios.municipio = tiendas.municipio
+order by estados.estado, municipios.municipio, tiendas.tienda) 
+	to 'c:/data/db/datos/datostiendas.csv'
+    with delimiter as ','
+    	csv header;
+
+
+PASO 2: Identificar en donde se encuentra el archivo CSV a importar a mongo. "c:\data\db\datos\datostiendas.csv"
+PASO 3: Ejecutar desde shell mongod para iniciar conecciones a MongoDB. Esto en una terminal 
+PASO 4: En otra pantalla shell de MSDOS o modo terminal ejecutar mongoimport.Esto en otra terminal
+
+mongoimport -d tiendas -c datostiendas --type csv --file "c:\data\db\datos\datostiendas.csv" --headerline
+
+PASO 5: Verificar la Bd tiendas y la colección datostienda en Mongo
+
+mongo
+
+show dbs;
+
+use tiendas;
+
+show collections;
