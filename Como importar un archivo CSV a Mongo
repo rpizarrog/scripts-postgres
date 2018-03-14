@@ -28,3 +28,7 @@ show dbs;
 use tiendas;
 
 show collections;
+
+PASO 6: Consultar documentos en Mongo en la colección datostienda
+
+db.datostienda.find().pretty()
